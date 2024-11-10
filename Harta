@@ -1,0 +1,41 @@
+package Zakat;
+
+public class Harta {
+    private String jenisHarta;
+    private double jumlah;
+
+    // Konstruktor
+    public Harta(String jenisHarta, double jumlah) {
+        this.jenisHarta = jenisHarta;
+        this.jumlah = jumlah;
+    }
+
+    // Getter dan Setter
+    public String getJenisHarta() {
+        return jenisHarta;
+    }
+
+    public void setJenisHarta(String jenisHarta) {
+        this.jenisHarta = jenisHarta;
+    }
+
+    public double getJumlah() {
+        return jumlah;
+    }
+
+    public void setJumlah(double jumlah) {
+        this.jumlah = jumlah;
+    }
+
+    // Metode untuk menghitung zakat pada jenis harta tertentu
+    public double hitungZakatHarta() {
+        double zakatHarta = 0;
+        if (jenisHarta.equalsIgnoreCase("tabungan") || jenisHarta.equalsIgnoreCase("emas")) {
+            zakatHarta = jumlah * 2.5 / 100;
+        } else if (jenisHarta.equalsIgnoreCase("properti")) {
+            // Misalnya properti memiliki aturan zakat 2.5%
+            zakatHarta = jumlah * 2.5 / 100;
+        }
+        return zakatHarta;
+    }
+}
