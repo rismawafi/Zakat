@@ -1,0 +1,25 @@
+package Zakat;
+
+public class ZakatFitrah {
+    private int jumlahAnggotaKeluarga;
+
+    // Konstruktor
+    public ZakatFitrah(int jumlahAnggotaKeluarga) {
+        this.jumlahAnggotaKeluarga = jumlahAnggotaKeluarga;
+    }
+
+    // Getter dan Setter
+    public int getJumlahAnggotaKeluarga() {
+        return jumlahAnggotaKeluarga;
+    }
+
+    public void setJumlahAnggotaKeluarga(int jumlahAnggotaKeluarga) {
+        this.jumlahAnggotaKeluarga = jumlahAnggotaKeluarga;
+    }
+
+    // Metode untuk menghitung zakat fitrah
+    public double hitungZakatFitrah() {
+        double zakatFitrahPerOrang = 30000; // Misalnya zakat fitrah per orang adalah 30.000 IDR
+        return zakatFitrahPerOrang * jumlahAnggotaKeluarga;
+    }
+}
