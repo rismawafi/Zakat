@@ -1,0 +1,50 @@
+package Zakat;
+
+public class Muzaki {
+    private String nama;
+    private double jumlahHarta;
+    private double penghasilan;
+
+    // Konstruktor
+    public Muzaki(String nama, double penghasilan, double jumlahHarta) {
+        this.nama = nama;
+        this.penghasilan = penghasilan;
+        this.jumlahHarta = jumlahHarta;
+    }
+
+    // Getter dan Setter
+    public String getNama() {
+        return nama;
+    }
+
+    public void setNama(String nama) {
+        this.nama = nama;
+    }
+
+    public double getPenghasilan() {
+        return penghasilan;
+    }
+
+    public void setPenghasilan(double penghasilan) {
+        this.penghasilan = penghasilan;
+    }
+
+    public double getJumlahHarta() {
+        return jumlahHarta;
+    }
+
+    public void setJumlahHarta(double jumlahHarta) {
+        this.jumlahHarta = jumlahHarta;
+    }
+
+    // Metode untuk menghitung zakat mal
+    public double hitungZakatMal() {
+        return jumlahHarta * 2.5 / 100;
+    }
+
+    // Metode untuk menghitung zakat fitrah
+    public double hitungZakatFitrah(int jumlahAnggotaKeluarga) {
+        double zakatFitrahPerOrang = 30000; // Misalnya zakat fitrah per orang adalah 30.000 IDR
+        return zakatFitrahPerOrang * jumlahAnggotaKeluarga;
+    }
+}
