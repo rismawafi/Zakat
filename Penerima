@@ -1,0 +1,24 @@
+package Zakat;
+
+public class Penerima {
+    private double nisab;
+
+    // Konstruktor
+    public Penerima(double nisab) {
+        this.nisab = nisab;
+    }
+
+    // Getter dan Setter
+    public double getNisab() {
+        return nisab;
+    }
+
+    public void setNisab(double nisab) {
+        this.nisab = nisab;
+    }
+
+    // Metode untuk memeriksa apakah jumlah harta memenuhi nisab
+    public boolean memenuhiSyarat(double jumlahHarta) {
+        return jumlahHarta >= nisab;
+    }
+}
