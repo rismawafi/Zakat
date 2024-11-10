@@ -1,0 +1,75 @@
+package Zakat;
+
+import java.util.Scanner;
+
+public class ZakatMain {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        String ulangi;
+
+        // Nisab zakat mal (saat ini diset Rp 6.859.394)
+        Penerima penerima = new Penerima(6859394);
+
+        do {
+            System.out.println("- - - - - - - - - - - - - - - - - - - -");
+            System.out.println("Selamat Datang di Kalkulator Zakat");
+            System.out.println("- - - - - - - - - - - - - - - - - - - -\n");
+
+            // Input data muzaki
+            System.out.print("Masukkan Nama Anda : ");
+            String nama = input.nextLine();
+            System.out.print("Masukkan Jumlah Penghasilan " + nama + " per Bulan dalam Rupiah: ");
+            double penghasilan = input.nextDouble();
+            System.out.print("Masukkan Jumlah Harta Anda (Tabungan/Emas/Properti) dalam Rupiah: ");
+            double jumlahHarta = input.nextDouble();
+
+            // Membuat objek Muzaki
+            Muzaki muzaki = new Muzaki(nama, penghasilan, jumlahHarta);
+
+            // Menu untuk memilih jenis zakat yang ingin dihitung
+            System.out.println("\nPilih jenis zakat yang ingin dihitung:");
+            System.out.println("1. Zakat Mal");
+            System.out.println("2. Zakat Fitrah");
+            System.out.println("3. Zakat Harta");
+            System.out.print("Masukkan pilihan Anda (1/2/3): ");
+            int pilihan = input.nextInt();
+            
+            switch (pilihan) {
+                case 1: // Menghitung Zakat Mal
+                    if (penerima.memenuhiSyarat(muzaki.getJumlahHarta())) {
+                        double zakatMal = muzaki.hitungZakatMal();
+                        System.out.println("Zakat mal yang harus Anda bayar adalah: " + zakatMal + " Rupiah");
+                    } else {
+                        System.out.println("Penghasilan Anda tidak mencukupi syarat nisab zakat.");
+                    }
+                    break;
+
+                case 2: // Menghitung Zakat Fitrah
+                    System.out.print("Masukkan jumlah anggota keluarga: ");
+                    int anggotaKeluarga = input.nextInt();
+                    ZakatFitrah zakatFitrah = new ZakatFitrah(anggotaKeluarga);
+                    System.out.println("Zakat fitrah yang harus dibayar: " + zakatFitrah.hitungZakatFitrah() + " Rupiah");
+                    break;
+
+                case 3: // Menghitung Zakat Harta
+                    System.out.print("Masukkan jenis harta yang akan dizakatkan (tabungan/emas/properti): ");
+                    input.nextLine(); // Membersihkan buffer
+                    String jenisHarta = input.nextLine();
+                    Harta harta = new Harta(jenisHarta, jumlahHarta);
+                    System.out.println("Zakat harta yang harus dibayar: " + harta.hitungZakatHarta() + " Rupiah");
+                    break;
+
+                default:
+                    System.out.println("Pilihan tidak valid.");
+                    break;
+            }
+
+            // Menanyakan apakah ingin menghitung zakat lagi
+            System.out.println("\nApakah Anda ingin menghitung zakat lagi? (y/n) ");
+            ulangi = input.next();
+
+        } while (ulangi.equalsIgnoreCase("y"));
+
+        input.close();
+    }
+}
